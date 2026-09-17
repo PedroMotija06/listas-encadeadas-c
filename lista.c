@@ -25,6 +25,7 @@ void inserir_no_inicio(No **inicio) {
     novo->proximo = *inicio; 
 
     *inicio = novo;
+
 }
 
 void inserir_no_final(No **inicio) {
@@ -60,6 +61,74 @@ void inserir_no_final(No **inicio) {
         }
 
         anterior->proximo = novo;
+    }
+}
+
+void inserir_no_meio(No **inicio) {
+    int valor;
+    int posicao;
+    int contador = 1;
+    int tamanho = contar_elementos(*inicio);
+
+    printf("Digite o numero que va ser adicionado: \n");
+    if (scanf("%d", &valor) != 1) {
+        printf("Entrada invalida! Digite um numero.\n");
+        int g;
+        while ((g = getchar()) != '\n' && g != EOF);
+        return;
+    }
+    
+    printf("Digite a posicao do numero que va ser adicionado: \n");
+    if (scanf("%d", &posicao) != 1) {
+        printf("Entrada invalida! Digite um numero.\n");
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+        return;
+    }
+
+    if (posicao == 1 || *inicio == NULL) {
+
+        No *novo = malloc(sizeof(No));
+        
+        if(novo == NULL) {
+            printf("Erro de alocação\n");
+            return;
+        }
+
+        novo->valor = valor;
+
+        novo->proximo = *inicio; 
+
+        *inicio = novo;
+    }
+
+    else {
+        No *novo = malloc(sizeof(No));
+
+        if(novo == NULL) {
+            printf("Erro de alocação\n");
+            return;
+        }
+        
+        novo->valor = valor;
+        novo->proximo = NULL;
+
+        No *anterior = *inicio;
+
+        while (contador != (posicao - 1)) {
+            if (contador > (tamanho + 1)) {
+                printf("Digite um valor dentro do limite de posicao!\n");
+                free(novo);
+                return;
+            }
+
+            anterior = anterior->proximo;
+            contador++;
+        }
+
+        No *atual = anterior->proximo;
+        anterior->proximo = novo;
+        novo->proximo = atual;
     }
 }
 
@@ -130,13 +199,13 @@ void encontrar_menor(No *atual) {
 
 }
 
-void contar_elementos(No *atual) {
+int contar_elementos(No *atual) {
     int contador = 0;
     while (atual != NULL) {
         contador++;
         atual = atual->proximo;
     }
-    printf("%d\n", contador);
+    return contador;
 }
 
 void imprimir_lista(No *atual) {

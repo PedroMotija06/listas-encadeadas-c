@@ -10,12 +10,13 @@ int main() {
         printf("====LISTA====\n");
         printf("1 - Inserir numero no comeco.\n");
         printf("2 - Inserir numero no fim.\n");
-        printf("3 - Remover numero.\n");
-        printf("4 - Listar numeros.\n");
-        printf("5 - Mostrar maior.\n");
-        printf("6 - Mostrar menor.\n");
-        printf("7 - Fazer a contagem dos numeros.\n");
-        printf("8 - Sair.\n");
+        printf("3 - Inserir numero no meio.\n");
+        printf("4 - Remover numero.\n");
+        printf("5 - Listar numeros.\n");
+        printf("6 - Mostrar maior.\n");
+        printf("7 - Mostrar menor.\n");
+        printf("8 - Fazer a contagem dos numeros.\n");
+        printf("9 - Sair.\n");
 
         int n;
         if (scanf("%d",&n) != 1) {
@@ -34,31 +35,35 @@ int main() {
         }
 
         else if (n == 3) {
-            remover_numero(&inicio);
+            inserir_no_meio(&inicio);
         }
 
         else if (n == 4) {
-            imprimir_lista(inicio);
+            remover_numero(&inicio);
         }
 
         else if (n == 5) {
-            encontrar_maior(inicio);
+            imprimir_lista(inicio);
         }
 
         else if (n == 6) {
-            encontrar_menor(inicio);
+            encontrar_maior(inicio);
         }
 
         else if (n == 7) {
-            contar_elementos(inicio);
+            encontrar_menor(inicio);
         }
 
         else if (n == 8) {
+            printf("%d\n", contar_elementos(inicio));
+        }
+
+        else if (n == 9) {
             break;
         }
 
         else {
-            printf("Digite um numero de 1 a 8!\n");
+            printf("Digite um numero de 1 a 9!\n");
         }
     }
 
