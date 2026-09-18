@@ -58,3 +58,7 @@ Diferente de um array dinâmico (onde os elementos ficam em um bloco contíguo d
 ### Sobre o projeto
 
 Este projeto foi desenvolvido como parte dos meus estudos de estruturas de dados em C, com foco em ponteiros, structs auto-referenciadas e gerenciamento manual de memória em uma estrutura dinâmica não contígua.
+
+### OBS
+
+Funcionalidade de reverter lista foi feita sem auxilio de videoaulas e/ou de inteligência artificial.
