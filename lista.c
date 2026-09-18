@@ -166,6 +166,58 @@ void remover_numero(No **inicio) {
     }
 }
 
+void reverter_a_lista(No **inicio) {
+
+    if (*inicio == NULL) {
+        printf("Lista Vazia! Impossivel reverter!\n");
+        return;
+    }
+
+    int f = contar_elementos(*inicio);
+    No *esquerdo = *inicio;
+    No *atual = esquerdo->proximo;
+
+    if (f == 1) {
+        printf("Lista com apenas um elemento!\n");
+        return;
+    }
+
+    else if(f == 2) {
+        esquerdo->proximo = NULL;        
+        atual->proximo = *inicio;
+        *inicio = atual;
+    }
+
+    else if (f == 3) {
+        No *terceiro = atual->proximo;
+        terceiro->proximo = atual;
+        esquerdo->proximo = NULL;
+        atual->proximo = *inicio;
+        *inicio = terceiro;
+    }
+
+    else {
+        No *segundo = esquerdo->proximo;
+        No *temp = segundo->proximo;
+        No *anterior = temp;
+
+        for (int a = 3; a < f; a++) {
+            temp = temp->proximo;
+            anterior->proximo = segundo;
+            segundo = anterior;
+            if (a != f - 1) {
+                anterior = temp;
+            }
+        }
+
+        temp->proximo = anterior;
+
+    esquerdo->proximo = NULL;
+    atual->proximo = *inicio;
+    *inicio = temp;
+    }
+}
+
 void encontrar_maior(No *atual) {
     if (atual == NULL) {
         printf("Lista vazia!\n");
@@ -207,6 +259,7 @@ int contar_elementos(No *atual) {
     }
     return contador;
 }
+
 
 void imprimir_lista(No *atual) {
     while (atual != NULL) {
